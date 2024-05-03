@@ -4,6 +4,7 @@ import { Form, Button, Alert } from 'react-bootstrap';
 
 import { loginUser } from '../utils/API';
 import Auth from '../utils/auth';
+import ADD_USER from '../utils/mutations'
 
 const LoginForm = () => {
   const [userFormData, setUserFormData] = useState({ email: '', password: '' });
