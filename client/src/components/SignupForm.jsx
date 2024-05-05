@@ -9,7 +9,7 @@ import { ADD_USER } from '../utils/mutations';
 
 const SignupForm = () => {
 
-  const [createUser] = useMutation(ADD_USER);
+  const [AddUser] = useMutation(ADD_USER);
 
   // set initial form state
   const [userFormData, setUserFormData] = useState({ username: '', email: '', password: '' });
@@ -36,7 +36,7 @@ const SignupForm = () => {
     try {
       // const response = await createUser(userFormData);
 
-      const response = await createUser({
+      const {data} = await AddUser({
         variables: {
           "username": userFormData.username,
           "email": userFormData.email,
@@ -47,10 +47,8 @@ const SignupForm = () => {
       // if (!response.ok) {
       //   throw new Error('something went wrong!');
       // }
-
-      const { token, user } = response.data.addUser;
-      console.log(user);
-      Auth.login(token);
+      console.log(userFormData, data)
+      Auth.login(data.addUser.token);
     } catch (err) {
       console.error(err);
       setShowAlert(true);
